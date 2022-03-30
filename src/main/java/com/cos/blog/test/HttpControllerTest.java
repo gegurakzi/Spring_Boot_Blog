@@ -9,6 +9,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class HttpControllerTest {
 
+    private static final String TAG="HttpControllerTest";
+
+    public void lombokTest(){
+        Member m = Member.builder().id(3).email("example@web.com").password("684086").username("exampler").build();
+        String print1 = TAG+"getter: "+m.getUsername();
+        m.setUsername("another one");
+        String print2 = TAG+"setter: "+m.getUsername();
+    }
+
     //인터넷 브라우저 요청은 무조건 GET
     @GetMapping("/test/http/get")
     public String getTest(Member m){        // query string: /test/http/get?id=1&username=admin&password=administrator&email=ssar@nate.com
