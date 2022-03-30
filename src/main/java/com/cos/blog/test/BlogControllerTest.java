@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BlogControllerTest {
 
+    @GetMapping("/")
+    public String home(){ return "<h1>Welcome!</h1>"; }
+
     @GetMapping("/test/hello")
     public String hello(){ return "<h1>Hello Spring Boot</h1>"; }
 }
