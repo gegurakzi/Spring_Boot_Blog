@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Builder
@@ -34,6 +35,11 @@ public class Board {
     @ManyToOne // 연관관계 명시 - Many: Board, One: User
     @JoinColumn(name="userId")
     private User user;// DB는 객체를 저장할 수 없지만 ORM을 사용하여 오브젝트를 저장할 수 있다.
+
+    @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
+    // mappedBy: 연관관계의 주인이 아니며, FK(Foreign key)를 DB내에 생성하면 안될 때(1의 정규화 위배) => @JoinColumn도 필요하지 않음
+    // fetch: JPA의 로딩방식으로, 즉시로딩(FetchType.EAGER)과 지연로딩(FetchType.LAZY)가 있음. @ManyToOne의 default는 EAGER, @OneToMany는 LAZY
+    private List<Reply> reply;
 
     @CreationTimestamp
     private Timestamp createDate;
