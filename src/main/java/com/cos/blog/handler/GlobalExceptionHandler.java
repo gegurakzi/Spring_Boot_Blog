@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class GlobalExceptionHandler {
 
+    @ExceptionHandler(value = Exception.class)
+    public String handleExceptionDebugging(Exception e) { return "e"; }
+
     @ExceptionHandler(value = IllegalArgumentException.class)
     public String handleIllegalArgException(IllegalArgumentException e){
         return "<h1>"+e.getMessage()+"</h1>";

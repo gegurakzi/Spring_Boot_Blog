@@ -1,3 +1,4 @@
+/*
 package com.cos.blog.test;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,3 +27,4 @@ public class TempControllerTest {
         return "test";
     }
 }
+*/
