@@ -18,7 +18,7 @@
         <label for="password" class="form-label">Password</label>
         <input type="password" class="form-control" id="password" required>
         <div class="invalid-feedback">
-            Please enter a pasword.
+           Please enter a pasword.
         </div>
       </div>
       <div class="col-12">
