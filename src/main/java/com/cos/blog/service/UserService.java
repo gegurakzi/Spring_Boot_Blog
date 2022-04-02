@@ -4,6 +4,7 @@ import com.cos.blog.model.RoleType;
 import com.cos.blog.model.User;
 import com.cos.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder encoder;
 
     @Transactional
     public int signUp(User user){
@@ -27,13 +31,12 @@ public class UserService {
         }
         return -1;
         */
+        String rawPassword = user.getPassword();
+        String encPassword = encoder.encode(rawPassword);
+        user.setPassword(encPassword);
         user.setRole(RoleType.USER);
         userRepository.save(user);
         return 1;
     }
 
-    @Transactional(readOnly = true) // Select할 떄 트랜잭션 시작, 서비스 종료시에 트랜잭션 종료(정합성 보장)
-    public User signIn(User user){
-        return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-    }
 }
