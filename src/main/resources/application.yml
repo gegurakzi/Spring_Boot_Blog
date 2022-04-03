@@ -8,6 +8,10 @@ server:
       force: true
 
 spring:
+
+  security:
+    debug: false
+
   mvc:
     view:
       prefix: /WEB-INF/views/ # Spring은 JSP의 탬플릿을 인식할수 없다. src/main/webapp/ 디렉토리 하위에 JSP파일 경로를 만들어줘야함. 기본경로에 prefix를 달아 경로 재지정

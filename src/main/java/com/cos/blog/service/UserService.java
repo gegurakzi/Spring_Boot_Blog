@@ -20,17 +20,6 @@ public class UserService {
 
     @Transactional
     public int signUp(User user){
-        /*
-        try {
-            user.setRole(RoleType.USER);
-            userRepository.save(user);
-            return 1;
-        } catch (Exception e){
-            //e.printStackTrace();
-            System.out.println("UserService : save() : " + e.getMessage());
-        }
-        return -1;
-        */
         String rawPassword = user.getPassword();
         String encPassword = encoder.encode(rawPassword);
         user.setPassword(encPassword);

@@ -6,7 +6,7 @@
       <h1>Sign in</h1>
     </div>
 
-    <form action="#" method="post" class="needs-validation" novalidate>
+    <form action="/auth/loginProc" method="post" class="needs-validation" novalidate>
 
       <div class="form-group p-3">
         <label for="username" class="form-label">User name</label>

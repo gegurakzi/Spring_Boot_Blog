@@ -4,12 +4,13 @@ import com.cos.blog.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 // Bean: Spring IoC 컨테이너가 관리하는 객체
 // JpaRepository를 상속받으면 자동으로 Bean 등록이 됨
 public interface UserRepository extends JpaRepository<User, Integer> {
-
-
-
+    // SELECT * FROM user WHERE username = 1?;
+    Optional<User> findByUsername(String username);
 
 
 
