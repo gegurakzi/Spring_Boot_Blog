@@ -5,14 +5,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+  <!--
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="shortcut icon" href="#">
-  <!--bootstrap style shet-->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <!--Bootstrap5 style sheet-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <!--Summer Note text editor style sheet-->
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+
+  <!--JQuery JS-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- Summer Note text editor JS-->
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 </head>
 <body>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -57,10 +67,10 @@
                 <a class="nav-link" href="/auth/logout">로그아웃</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/auth/boardForm">글쓰기</a>
+                <a class="nav-link" href="/board/saveForm">글쓰기</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/auth/form">${pageContext.request.userPrincipal.name}님의 페이지</a>
+                <a class="nav-link" href="/board/updateForm">${pageContext.request.userPrincipal.name}님의 페이지</a>
               </li>
             </ul>
         </sec:authorize>

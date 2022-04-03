@@ -29,7 +29,6 @@ public class Board {
     @Lob // 대용량 데이터
     private String content; //방대한 내용 또는 html 태그와 혼합되는 내용일 경우 섬머노트 라이브러리 사용
 
-    @ColumnDefault("0")
     private int count; //조회수
 
     @ManyToOne // 연관관계 명시 - Many: Board, One: User
