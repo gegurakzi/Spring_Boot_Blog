@@ -16,39 +16,54 @@
   </section>
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <c:forEach var="board" items="${boards.content}">
+      <div class="col p-2">
+        <a class="text-dark" style="text-decoration:none" href="#">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">${board.title}</h5>
+              <p class="card-text">${board.content}</p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">${board.count} views</small>
+            </div>
           </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
+        </a>
       </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-          </div>
-          <div class="card-footer">
-            <small class="text-muted">Last updated 3 mins ago</small>
-          </div>
-        </div>
-      </div>
-    </div>
+    </c:forEach>
+  </div>
+
+
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <c:choose>
+        <c:when test="${boards.first}">
+          <li class="page-item disabled">
+        </c:when>
+        <c:otherwise>
+          <li class="page-item">
+        </c:otherwise>
+      </c:choose>
+        <a class="page-link" href="?page=${boards.number-1}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Prev</span>
+        </a>
+      </li>
+      <c:choose>
+        <c:when test="${boards.last}">
+          <li class="page-item disabled">
+        </c:when>
+        <c:otherwise>
+          <li class="page-item">
+        </c:otherwise>
+      </c:choose>
+        <a class="page-link" href="?page=${boards.number+1}" aria-label="Next">
+          <span class="sr-only">Next</span>
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
 
   <%@ include file="layout/footer.jsp"%>
