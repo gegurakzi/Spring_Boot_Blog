@@ -73,7 +73,7 @@
                 <a class="nav-link" href="/board/saveForm">글쓰기</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/board/updateForm">${pageContext.request.userPrincipal.name}님의 페이지</a>
+                <a class="nav-link" href="/user/updateForm">${pageContext.request.userPrincipal.name}님의 페이지</a>
               </li>
             </ul>
         </sec:authorize>
