@@ -18,7 +18,7 @@
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <c:forEach var="board" items="${boards.content}">
       <div class="col p-2">
-        <a class="text-dark" style="text-decoration:none" href="#">
+        <a href="/board/${board.id}" class="text-dark" style="text-decoration:none">
           <div class="card h-100">
             <div class="card-body">
               <h5 class="card-title">${board.title}</h5>

@@ -13,6 +13,12 @@ let index = {
             })
             if(!invalid) this.save();
         });
+        $("#link-update").on("click", ()=>{
+
+        });
+        $("#link-delete").on("click", ()=>{
+            this.deleteById();
+        });
     },
 
     save: function(){
@@ -35,7 +41,21 @@ let index = {
         }).fail(function(error){
             alert(JSON.stringify(error));
         });
-    }
+    },
+
+   deleteById: function(){
+            var id = $("#board-id").attr("value");
+            $.ajax({
+                type : "DELETE",
+                url : "/api/board/"+id,
+                dataType : "json"
+            }).done(function(response){
+                alert("글 삭제 완료!");
+                location.href = "/";
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+        }
 }
 
 index.init();

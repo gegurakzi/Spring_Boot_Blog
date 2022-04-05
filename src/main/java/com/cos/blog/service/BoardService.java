@@ -29,7 +29,19 @@ public class BoardService {
         boardRepository.save(board);
     }
 
+    @Transactional(readOnly = true)
+    public Board readPage(int id){
+        return boardRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("no board"));
+    }
+
+    @Transactional(readOnly = true)
     public Page<Board> list(Pageable pageable){
         return boardRepository.findAll(pageable);
+    }
+
+    @Transactional
+    public void deletePosting(int id){
+        boardRepository.deleteById(id);
     }
 }

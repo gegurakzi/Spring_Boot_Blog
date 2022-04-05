@@ -12,6 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @Slf4j
@@ -24,6 +25,13 @@ public class BoardController {
     public String Index(Model model, @PageableDefault(size=12, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
         model.addAttribute("boards",  boardService.list(pageable));
         return "index"; // Model에 탬플릿에 필요한 정보를 담으면 자동으로 전달해줌
+    }
+
+    @GetMapping("/board/{id}")
+    public String findById(@PathVariable int id, Model model) {
+
+        model.addAttribute("board", boardService.readPage(id));
+        return "board/detail"; // Model에 탬플릿에 필요한 정보를 담으면 자동으로 전달해줌
     }
 
     @GetMapping("/board/saveForm")
