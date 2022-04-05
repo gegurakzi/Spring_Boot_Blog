@@ -44,4 +44,12 @@ public class BoardService {
     public void deletePosting(int id){
         boardRepository.deleteById(id);
     }
+
+    @Transactional
+    public void updatePosting(int id, Board requestBoard){
+        Board board = boardRepository.findById(id)
+            .orElseThrow(()-> new IllegalArgumentException("no board"));
+        board.setTitle(requestBoard.getTitle());
+        board.setContent(requestBoard.getContent());
+    }
 }

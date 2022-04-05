@@ -13,7 +13,7 @@
         <p class="blog-post-meta text-muted m-1 float-start"><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${board.createDate}" /> by <a href="#" class="text-muted" >${board.user.username}</a></p>
           <div class="d-flex justify-content-end">
             <c:if test="${board.user.id == principal.user.id}">
-              <a href="#" class="text-muted" id="link-update">수정</a>
+              <a href="/board/${board.id}/updateForm" class="text-muted" id="link-update">수정</a>
               <p class="text-muted">&nbsp;|&nbsp;</p>
               <a href="#" class="text-muted" id="link-delete">삭제</a>
             </c:if>
