@@ -2,10 +2,13 @@ package com.cos.blog.service;
 
 
 import com.cos.blog.model.Board;
+import com.cos.blog.model.Reply;
 import com.cos.blog.model.RoleType;
 import com.cos.blog.model.User;
 
 import com.cos.blog.repository.BoardRepository;
+import com.cos.blog.repository.ReplyRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -15,12 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
-
 @Service
 public class BoardService {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
 
     @Transactional
     public void write(Board board, User user){
@@ -29,10 +34,12 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Board readPage(int id){
-        return boardRepository.findById(id)
+        Board selectedBoard = boardRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("no board"));
+        selectedBoard.setCount(selectedBoard.getCount()+1);
+        return selectedBoard;
     }
 
     @Transactional(readOnly = true)
@@ -51,5 +58,14 @@ public class BoardService {
             .orElseThrow(()-> new IllegalArgumentException("no board"));
         board.setTitle(requestBoard.getTitle());
         board.setContent(requestBoard.getContent());
+    }
+
+    @Transactional
+    public void writeReply(User user, int boardId, Reply reply){
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(()-> new IllegalArgumentException("no board"));
+        reply.setBoard(board);
+        reply.setUser(user);
+        replyRepository.save(reply);
     }
 }

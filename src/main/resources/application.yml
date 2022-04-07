@@ -37,3 +37,9 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+
+
+key:
+  kakao:
+    api-key: 32b1781743eb300c70ecd60df026d769
+    assigned-password: asdfadfasdsfdshhdffawfwdsfawe

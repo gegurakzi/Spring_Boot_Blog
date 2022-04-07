@@ -38,7 +38,6 @@ public class UserApiController {
     public ResponseDto<Integer> save(@RequestBody User user){
         log.info(user.toString());
 
-
         int result = userService.signUp(user);
        return new ResponseDto<Integer>(HttpStatus.OK.value(), result);
     }

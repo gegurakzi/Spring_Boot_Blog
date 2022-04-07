@@ -13,6 +13,7 @@ let index = {
             })
             if(!invalid) this.save();
         });
+
         $("#btn-update").on("click", ()=>{
             forms=$(".needs-validation");
             invalid=false;
@@ -26,9 +27,24 @@ let index = {
             })
             if(!invalid) this.update();
         });
-        $("#link-update").on("click", ()=>{
 
+        $("#btn-reply-save").on("click", ()=>{
+            forms=$("#comment--save");
+            invalid=false;
+            Array.prototype.slice.call(forms).forEach(function (form) {
+                if (!form.checkValidity()) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  invalid = true;
+                }
+                form.classList.add('was-validated');
+            })
+            if(!invalid) this.saveReply();
         });
+
+        $("#link-update").on("click", ()=>{
+        });
+
         $("#link-delete").on("click", ()=>{
             this.deleteById();
         });
@@ -89,6 +105,26 @@ let index = {
         }).done(function(response){
             alert("글 삭제 완료!");
             location.href = "/";
+        }).fail(function(error){
+            alert(JSON.stringify(error));
+        });
+    },
+
+    saveReply: function(){
+        let boardId = $("#board-id").attr("value");
+        let data = {
+           content : $("#comment--content").val()
+        };
+
+        $.ajax({
+            type : "POST",
+            url : `/api/board/${boardId}/reply`,
+            data : JSON.stringify(data),
+            contentType : "application/json; charset=utf-8",
+            dataType : "json"
+        }).done(function(response){
+            alert("댓글 저장 완료!");
+            location.href = `/board/${boardId}`;
         }).fail(function(error){
             alert(JSON.stringify(error));
         });

@@ -41,4 +41,11 @@ public class UserService {
         return 1;
     }
 
+    @Transactional
+    public User findUser(String username){
+        User searchResult = userRepository.findByUsername(username)
+                .orElseGet(()-> null );
+        return searchResult;
+    }
+
 }

@@ -29,7 +29,6 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String findById(@PathVariable int id, Model model) {
-
         model.addAttribute("board", boardService.readPage(id));
         return "board/detail"; // Model에 탬플릿에 필요한 정보를 담으면 자동으로 전달해줌
     }

@@ -1,5 +1,6 @@
 package com.cos.blog.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -38,7 +39,9 @@ public class Board {
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER)
     // mappedBy: 연관관계의 주인이 아니며, FK(Foreign key)를 DB내에 생성하면 안될 때(1의 정규화 위배) => @JoinColumn도 필요하지 않음
     // fetch: JPA의 로딩방식으로, 즉시로딩(FetchType.EAGER)과 지연로딩(FetchType.LAZY)가 있음. @ManyToOne의 default는 EAGER, @OneToMany는 LAZY
-    private List<Reply> reply;
+    @JsonIgnoreProperties({"board"})
+    //board 변수로의 재참조를 막아준다.
+    private List<Reply> replys;
 
     @CreationTimestamp
     private Timestamp createDate;

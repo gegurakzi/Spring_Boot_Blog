@@ -25,10 +25,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id; // 시퀀스, AUTO_INCREMENT
 
-    @Column(nullable = false, length=20, unique = true)
+    @Column(nullable = false, length=100, unique = true)
     private String username; //아이디, non-null
 
-    @Column(nullable = false, length=60) // 해쉬를 통한 암호화 전략 -> 큰 length
+    @Column(nullable = false, length=100) // 해쉬를 통한 암호화 전략 -> 큰 length
     private String password;
 
     @Column(nullable = false, length=50)

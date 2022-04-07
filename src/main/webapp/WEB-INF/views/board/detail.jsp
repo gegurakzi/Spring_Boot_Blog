@@ -6,7 +6,7 @@
   </section>
 
   <article class="blog-post">
-    <div class="container" novalidate>
+    <div class="container">
       <div class="container p-2">
         <p id="board-id" class="blog-post-meta text-mute" value="${board.id}">#${board.id}</p>
         <h2 class="blog-post-title">${board.title}</h2>
@@ -28,10 +28,43 @@
         <p class="blog-post-meta text-muted">${board.count} views</p>
       </div>
     </div>
-    <div class="p-2 row">
 
+
+
+    <div class="m-4 pt-4 row border-top">
+
+      <c:forEach var="reply" items="${board.replys}">
+        <div class="container p-3 d-flex">
+          <div class="col" style="min-width:100px">
+            <p class="text-break"><small>${reply.user.username}</small></p>
+          </div>
+          <div class="container border-start">
+            <p class="text-break">${reply.content}</p>
+          </div>
+          <div class="col" style="min-width:90px">
+            <small><small><small><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${board.createDate}" /></small></small></small>
+            <c:if test="${reply.user.id == principal.user.id}">
+              <div class="d-flex justify-content-end">
+                <small><a href="#" class="text-muted" id="link-delete">삭제</a></small>
+              </div>
+            </c:if>
+          </div>
+        </div>
+      </c:forEach>
+
+      <form id="comment--save" class="container p-3 d-flex">
+        <div class="col" style="min-width:100px">
+          <p>${principal.user.username}</p>
+        </div>
+        <div class="container">
+          <textarea id="comment--content" class="form-control w-100" placeholder="Leave a comment..." required></textarea>
+        </div>
+        <div class="col">
+          <button type="submit" id="btn-reply-save" class="btn btn-dark h-100" style="min-width:100px">댓글 쓰기</button>
+        </div>
+      </form>
     </div>
-  </div>
+  </article>
   <script src="/js/board.js"></script>
 
 
