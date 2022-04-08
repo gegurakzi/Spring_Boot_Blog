@@ -1,6 +1,7 @@
 package com.cos.blog.service;
 
 
+import com.cos.blog.dto.ReplyRequestDto;
 import com.cos.blog.model.Board;
 import com.cos.blog.model.Reply;
 import com.cos.blog.model.RoleType;
@@ -8,6 +9,7 @@ import com.cos.blog.model.User;
 
 import com.cos.blog.repository.BoardRepository;
 import com.cos.blog.repository.ReplyRepository;
+import com.cos.blog.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,6 +25,9 @@ public class BoardService {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private ReplyRepository replyRepository;
@@ -61,11 +66,12 @@ public class BoardService {
     }
 
     @Transactional
-    public void writeReply(User user, int boardId, Reply reply){
-        Board board = boardRepository.findById(boardId)
-                .orElseThrow(()-> new IllegalArgumentException("no board"));
-        reply.setBoard(board);
-        reply.setUser(user);
-        replyRepository.save(reply);
+    public void writeReply(ReplyRequestDto replyDto){
+        replyRepository.saveDto(replyDto.getUserId(), replyDto.getBoardId(), replyDto.getContent());
+    }
+
+    @Transactional
+    public void deleteComment(int id){
+        replyRepository.deleteById(id);
     }
 }

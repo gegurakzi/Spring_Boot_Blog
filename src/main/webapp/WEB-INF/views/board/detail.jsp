@@ -45,7 +45,7 @@
             <small><small><small><fmt:formatDate pattern="yyyy-MM-dd hh:mm" value="${board.createDate}" /></small></small></small>
             <c:if test="${reply.user.id == principal.user.id}">
               <div class="d-flex justify-content-end">
-                <small><a href="#" class="text-muted" id="link-delete">삭제</a></small>
+                <small><a id="reply-delete" href="#" onClick="index.deleteReply(${board.id}, ${reply.id})" class="text-muted">삭제</a></small>
               </div>
             </c:if>
           </div>
@@ -54,10 +54,11 @@
 
       <form id="comment--save" class="container p-3 d-flex">
         <div class="col" style="min-width:100px">
+          <input id="user-id" type="hidden" value="${principal.user.id}"/>
           <p>${principal.user.username}</p>
         </div>
         <div class="container">
-          <textarea id="comment--content" class="form-control w-100" placeholder="Leave a comment..." required></textarea>
+          <textarea id="reply-content" class="form-control w-100" placeholder="Leave a comment..." required></textarea>
         </div>
         <div class="col">
           <button type="submit" id="btn-reply-save" class="btn btn-dark h-100" style="min-width:100px">댓글 쓰기</button>

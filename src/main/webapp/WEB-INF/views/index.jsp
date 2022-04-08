@@ -2,27 +2,29 @@
 
   <%@ include file="layout/header.jsp"%>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
-      </div>
+
+<div class="card py-5 text-center text-white border-0">
+  <img class="card-img opacity-75" src="/image/blog-banner.jpg" alt="Card image">
+  <div class="row py-lg-5 card-img-overlay align-items-center">
+  <div class="col-lg-6 py-lg-5 col-md-8 mx-auto">
+    <h1 class="text-light card-title">With slight of caffein</h1>
+    <p class="text-light card-text"></p>
+    <p class="text-light card-text">It is the business of the very few to be independent;</p>
+    <p class="text-light card-text">it is a previlege of the strong</p>
     </div>
-  </section>
+  </div>
+</div>
+
+
 
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <c:forEach var="board" items="${boards.content}">
       <div class="col p-2">
         <a href="/board/${board.id}" class="text-dark" style="text-decoration:none">
-          <div class="card h-100">
+          <div class="card" style="height:200px;">
             <div class="card-body">
-              <h5 class="card-title">${board.title}</h5>
-              <p class="card-text">${board.content}</p>
+              <h4 class="card-title">${board.title}</h4>
+              <p class="card-text text-truncate w-100"><c:out value='${board.content.replaceAll("\\\<.*?\\\>","")}' /></p>
             </div>
             <div class="card-footer">
               <small class="text-muted">${board.count} views</small>

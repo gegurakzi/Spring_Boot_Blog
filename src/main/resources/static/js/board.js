@@ -95,7 +95,6 @@ let index = {
          });
     },
 
-
     deleteById: function(){
         let id = $("#board-id").attr("value");
         $.ajax({
@@ -110,21 +109,35 @@ let index = {
         });
     },
 
-    saveReply: function(){
-        let boardId = $("#board-id").attr("value");
-        let data = {
-           content : $("#comment--content").val()
-        };
+    deleteReply: function(boardId, replyId){
+            $.ajax({
+                type : "DELETE",
+                url : "/api/board/"+boardId+"/reply/"+replyId,
+                dataType : "json"
+            }).done(function(response){
+                alert("댓글 삭제 완료!");
+                location.href = "/board/"+boardId;
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+        },
 
+
+    saveReply: function(){
+        let data = {
+            userId : $("#user-id").attr("value"),
+            boardId : $("#board-id").attr("value"),
+            content : $("#reply-content").val()
+        };
         $.ajax({
             type : "POST",
-            url : `/api/board/${boardId}/reply`,
+            url : "/api/board/"+data.boardId+"/reply",
             data : JSON.stringify(data),
             contentType : "application/json; charset=utf-8",
             dataType : "json"
         }).done(function(response){
             alert("댓글 저장 완료!");
-            location.href = `/board/${boardId}`;
+            location.href = "/board/"+data.boardId;
         }).fail(function(error){
             alert(JSON.stringify(error));
         });

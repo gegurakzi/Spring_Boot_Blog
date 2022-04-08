@@ -47,7 +47,7 @@
   </svg>
   <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/">블로그</a>
+      <a class="navbar-brand" href="/">With slight of caffein</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>

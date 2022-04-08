@@ -55,6 +55,10 @@ let index = {
             contentType : "application/json; charset=utf-8", // body 데이터가 어떤 타입인지
             dataType : "json" // "요청을 서버로 해서" 응답데이터가 왔을때 기본적으로 모든것이 문자열. 만약 생긴게 JSON이라면 Javascript로 변환, 파라미터로 전달해줌
         }).done(function(response){
+            if(response.status === 500){
+                alert("회원가입에 실패하였습니다.");
+                return;
+            }
             alert("회원가입 완료!");
             location.href = "/";
         }).fail(function(error){
