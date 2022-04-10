@@ -1,6 +1,7 @@
 package com.cos.blog.controller;
 
 import com.cos.blog.config.auth.PrincipalDetail;
+import com.cos.blog.model.Board;
 import com.cos.blog.service.BoardService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 @Slf4j
 public class BoardController {
+
+    //
+    //DTO를 반환하는 Service
+    //모델에 DTO를 맵핑하여 불필요한 정보의 노출 줄이기
+
 
     @Autowired
     private BoardService boardService;

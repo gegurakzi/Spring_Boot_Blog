@@ -67,6 +67,7 @@ public class BoardService {
 
     @Transactional
     public void writeReply(ReplyRequestDto replyDto){
+
         replyRepository.saveDto(replyDto.getUserId(), replyDto.getBoardId(), replyDto.getContent());
     }
 
